@@ -47,6 +47,18 @@ def transformaEmFloat(minutiae_parameter):
     
     return float_minutiae
 
+# forma tuplas com (x,y,theta)
+def formaTuplas(valores_x, valores_y, angulos):
+    tuplas = []
+    for itemx in range(len(valores_x)):
+        for itemy in range(len(valores_y)):
+            for itema in range(len(angulos)):
+                if (itemx == itemy):
+                    if (itemx == itema):
+                        tuplas.append([valores_x[itemx], valores_y[itemy], angulos[itema]])
+
+    return tuplas
+
 abreImagem(sys.argv[1])
 abreImagem(sys.argv[2])
 
@@ -62,3 +74,5 @@ valores_x_comparacao = transformaEmFloat(valores_x_comparacao)
 valores_y_comparacao = transformaEmFloat(valores_y_comparacao)
 angulo_comparacao = transformaEmFloat(angulo_comparacao)
 
+tuplas_referencia = formaTuplas(valores_x_referencia, valores_y_referencia, angulo_referencia)
+tuplas_comparacao = formaTuplas(valores_x_comparacao, valores_y_comparacao, angulo_comparacao)
