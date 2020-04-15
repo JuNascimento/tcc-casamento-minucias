@@ -12,8 +12,9 @@ from formaDeltas import formaDeltas
 NOME_ARQUIVO_MINUCIAS_REFERENCIA = sys.argv[1].split(".tif")[0] + ".txt"
 NOME_ARQUIVO_MINUCIAS_COMPARACAO = sys.argv[2].split(".tif")[0] + ".txt"
 
-abreImagem(sys.argv[1])
-abreImagem(sys.argv[2])
+(dimensao_imagem_referencia, dimensao_imagem_comparacao) = abreImagem(sys.argv[1], sys.argv[2])
+
+print("\n--------------------------\n")
 
 (valores_x_referencia, valores_y_referencia, angulo_referencia, tipo_referencia) = lerArquivosMinucias(NOME_ARQUIVO_MINUCIAS_REFERENCIA)
 
@@ -29,10 +30,3 @@ angulo_comparacao = transformaEmFloat(angulo_comparacao)
 
 tuplas_referencia = formaTuplas(valores_x_referencia, valores_y_referencia, angulo_referencia)
 tuplas_comparacao = formaTuplas(valores_x_comparacao, valores_y_comparacao, angulo_comparacao)
-
-delta = formaDeltas(tuplas_referencia, tuplas_comparacao)
-
-npa = np.asarray(delta, dtype=np.float32)
-
-print(npa)
-print(npa.shape)
