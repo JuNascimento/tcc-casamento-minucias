@@ -28,5 +28,6 @@ valores_x_comparacao = transformaEmFloat(valores_x_comparacao)
 valores_y_comparacao = transformaEmFloat(valores_y_comparacao)
 angulo_comparacao = transformaEmFloat(angulo_comparacao)
 
-tuplas_referencia = formaTuplas(valores_x_referencia, valores_y_referencia, angulo_referencia)
-tuplas_comparacao = formaTuplas(valores_x_comparacao, valores_y_comparacao, angulo_comparacao)
+print("Número de minúcias encontradas na imagem de referência --> ", len(valores_x_referencia))
+print("Número de minúcias encontradas na imagem de comparação --> ", len(valores_x_comparacao))
+print("\n--------------------------\n")
