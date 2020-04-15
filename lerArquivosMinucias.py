@@ -21,5 +21,8 @@ def lerArquivosMinucias(arquivo):
     tipo = linhas[3].split("   ")
     tipo.pop(0)
 
+    if (len(valores_x) == len(valores_y) and len(valores_x) == len(angulo) and len(valores_y) == len(tipo)):
+        return (valores_x, valores_y, angulo, tipo)
+    else:
+        return False
 
-    return (valores_x, valores_y, angulo, tipo)
