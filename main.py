@@ -38,3 +38,17 @@ angulo_referencia = transformaMinuciasEmMatrizes(angulo_referencia)
 valores_x_comparacao = transformaMinuciasEmMatrizes(valores_x_comparacao)
 valores_y_comparacao = transformaMinuciasEmMatrizes(valores_y_comparacao)
 angulo_comparacao = transformaMinuciasEmMatrizes(angulo_comparacao)
+
+media_minucias_x_referencia = int(np.mean(valores_x_referencia))
+media_minucias_y_referencia = int(np.mean(valores_y_referencia))
+
+media_minucias_x_comparacao = int(np.mean(valores_x_comparacao))
+media_minucias_y_comparacao = int(np.mean(valores_y_comparacao))
+
+print("Média das minúcias de referencia em x -->", media_minucias_x_referencia)
+print("Média das minúcias de referencia em y -->", media_minucias_y_referencia)
+
+print("\nMédia das minúcias de comparação em x -->", media_minucias_x_comparacao)
+print("Média das minúcias de comparação em y -->", media_minucias_y_comparacao)
+
+print("\n--------------------------\n")
