@@ -1,12 +1,14 @@
 import sys
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 
 from abreImagem import abreImagem
 from lerArquivosMinucias import lerArquivosMinucias
 from transformaEmFloat import transformaEmFloat
 from formaTuplas import formaTuplas
-from formaDeltas import formaDeltas
 from transformaMinuciasEmMatrizes import transformaMinuciasEmMatrizes
+from descobreMediaMinucias import descobreMediaMinucias
 
 NOME_ARQUIVO_MINUCIAS_REFERENCIA = sys.argv[1].split(".tif")[0] + ".txt"
 NOME_ARQUIVO_MINUCIAS_COMPARACAO = sys.argv[2].split(".tif")[0] + ".txt"
@@ -39,16 +41,7 @@ valores_x_comparacao = transformaMinuciasEmMatrizes(valores_x_comparacao)
 valores_y_comparacao = transformaMinuciasEmMatrizes(valores_y_comparacao)
 angulo_comparacao = transformaMinuciasEmMatrizes(angulo_comparacao)
 
-media_minucias_x_referencia = int(np.mean(valores_x_referencia))
-media_minucias_y_referencia = int(np.mean(valores_y_referencia))
-
-media_minucias_x_comparacao = int(np.mean(valores_x_comparacao))
-media_minucias_y_comparacao = int(np.mean(valores_y_comparacao))
-
-print("Média das minúcias de referencia em x -->", media_minucias_x_referencia)
-print("Média das minúcias de referencia em y -->", media_minucias_y_referencia)
-
-print("\nMédia das minúcias de comparação em x -->", media_minucias_x_comparacao)
-print("Média das minúcias de comparação em y -->", media_minucias_y_comparacao)
+(media_minucias_x_referencia, media_minucias_y_referencia) = descobreMediaMinucias(valores_x_referencia, valores_y_referencia, "referência")
+(media_minucias_x_comparacao, media_minucias_y_comparacao) = descobreMediaMinucias(valores_x_comparacao, valores_y_comparacao, "comparação")
 
 print("\n--------------------------\n")
