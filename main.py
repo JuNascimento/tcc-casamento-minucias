@@ -4,7 +4,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from descobreDadosImagens import descobreDadosImagens
-from lerArquivosMinucias import lerArquivosMinucias
+from leArquivosMinucias import lerArquivosMinucias
 from transformaEmFloat import transformaEmFloat
 from formaTuplas import formaTuplas
 from transformaMinuciasEmMatrizes import transformaMinuciasEmMatrizes
