@@ -1,4 +1,4 @@
-def lerArquivosMinucias(arquivo):
+def lerArquivosMinucias(arquivo, tipo_minucia):
     caminho_arquivo = '/Users/julia.nascimento/Julia/uerj/10_periodo/tcc/tcc-casamento-minucias/arquivos_minucias/' + arquivo
     minucias = open(caminho_arquivo, "r")
     linhas = []
