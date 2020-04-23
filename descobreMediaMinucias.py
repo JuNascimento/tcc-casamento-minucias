@@ -7,7 +7,6 @@ def descobreMediaMinucias(minucias_x, minucias_y, tipo_minucia):
 
   print("Média das minúcias de", tipo_minucia, "em x -->", media_minucias_x)
   print(
-    "Média das minúcias de", tipo_minucia, "em y -->", media_minucias_y, "\n"
-  )
+    "Média das minúcias de", tipo_minucia, "em y -->", media_minucias_y)
 
   return (media_minucias_x, media_minucias_y)
