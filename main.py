@@ -108,33 +108,34 @@ diferenca_angulo_minucias = normalizaMinuciasAngulo(
 
 theta = diferenca_angulo_minucias * math.pi / 180
 
-# qual a translacao considerando a rotacao
-DX = matriz_reposicionada_x_comparacao - np.multiply(
+# define a translação considerando a rotação
+translacao_x = matriz_reposicionada_x_comparacao - np.multiply(
   matriz_reposicionada_x_referencia, np.cos(theta)) - np.multiply(
     matriz_reposicionada_y_referencia, np.sin(theta))
-DY = matriz_reposicionada_y_comparacao + np.multiply(
+translacao_y = matriz_reposicionada_y_comparacao + np.multiply(
   matriz_reposicionada_x_referencia, np.sin(theta)) - np.multiply(
     matriz_reposicionada_y_referencia, np.cos(theta))
 
+index_x = np.rint((translacao_x - min_dx) / step_x + 1)
+index_y = np.rint((translacao_y - min_dx) / step_x + 1)
 index_r = np.rint((diferenca_angulo_minucias - min_rot) / step_rot + 1)
-index_x = np.rint((DX - min_dx) / step_x + 1)
-index_y = np.rint((DY - min_dx) / step_x + 1)
 
-resultado00 = np.where(
+valores_dentro_limite = np.where(
   (index_x > 0) & (
     index_x <= nx) & (
       index_y > 0) & (
         index_y <= ny) & (
           abs(diferenca_angulo_minucias) < max_rot))
-listona = list(zip(resultado00[0], resultado00[1]))
 
-for i in range(0, len(resultado00[0] - 1)):
-  idx_x = int(index_x[resultado00[0][i], resultado00[1][i]])
-  idx_y = int(index_y[resultado00[0][i], resultado00[1][i]])
-  idx_r = int(index_r[resultado00[0][i], resultado00[1][i]])
+for i in range(0, len(valores_dentro_limite[0] - 1)):
+  idx_x = int(index_x[valores_dentro_limite[0][i], valores_dentro_limite[1][i]])
+  idx_y = int(index_y[valores_dentro_limite[0][i], valores_dentro_limite[1][i]])
+  idx_r = int(index_r[valores_dentro_limite[0][i], valores_dentro_limite[1][i]])
   A[idx_y, idx_x, idx_r] = A[idx_y, idx_x, idx_r] + 1
 
 total_minucias_A_nonzero = list(zip(A.nonzero()[0], A.nonzero()[1], A.nonzero()[2]))
 print("Total de valores encontrados em A diferente de zero -->", len(total_minucias_A_nonzero))
+index_maior_valor_A = np.unravel_index(np.argmax(A, axis=None), A.shape)
 print("Maior valor encontrado em A -->", np.max(A))
+print("Posição do maior valor encontrado em A -->", index_maior_valor_A)
 print("\n--------------------------\n")
