@@ -16,22 +16,13 @@ np.set_printoptions(
   suppress=True,
   linewidth=200)
 
-NOME_ARQUIVO_MINUCIAS_REFERENCIA = sys.argv[1].split(".tif")[0] + ".txt"
-NOME_ARQUIVO_MINUCIAS_COMPARACAO = sys.argv[2].split(".tif")[0] + ".txt"
-
-(valores_x_referencia,
-  valores_y_referencia,
-  angulo_referencia,
-  tipo_referencia) = leArquivosMinucias(NOME_ARQUIVO_MINUCIAS_REFERENCIA)
+(valores_x_referencia, valores_y_referencia, angulo_referencia) = leArquivosMinucias(sys.argv[1])
 
 valores_x_referencia = transformaEmFloat(valores_x_referencia)
 valores_y_referencia = transformaEmFloat(valores_y_referencia)
 angulo_referencia = transformaEmFloat(angulo_referencia)
 
-(valores_x_comparacao,
-  valores_y_comparacao,
-  angulo_comparacao,
-  tipo_comparacao) = leArquivosMinucias(NOME_ARQUIVO_MINUCIAS_COMPARACAO)
+(valores_x_comparacao, valores_y_comparacao, angulo_comparacao) = leArquivosMinucias(sys.argv[2])
 
 valores_x_comparacao = transformaEmFloat(valores_x_comparacao)
 valores_y_comparacao = transformaEmFloat(valores_y_comparacao)
@@ -93,5 +84,6 @@ index_maior_valor_A = montaMatrizAcumuladora(limites, matriz_reposicionada_x_ref
   matriz_reposicionada_angulo_comparacao
 )
 
-(quantidade_pontos_referencia, quantidade_pontos_comparacao, referencia_linha, comparacao_linha) = \
-  transladaMatrizes(dados_minucias, index_maior_valor_A, limites)
+(quantidade_pontos_referencia, quantidade_pontos_comparacao,
+  referencia_linha, comparacao_linha) = \
+    transladaMatrizes(dados_minucias, index_maior_valor_A, limites)
