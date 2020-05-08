@@ -1,7 +1,7 @@
 import os
 
 
-def lerArquivosMinucias(arquivo):
+def leArquivosMinucias(arquivo):
   caminho_arquivo = os.getcwd() + '/arquivos_minucias/' + arquivo
   minucias = open(caminho_arquivo, "r")
   linhas = []
