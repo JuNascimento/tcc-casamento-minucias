@@ -1,7 +1,8 @@
 import os
 
+def leArquivosMinucias(imagem):
+  arquivo = imagem.split(".tif")[0] + ".txt"
 
-def leArquivosMinucias(arquivo):
   caminho_arquivo = os.getcwd() + '/arquivos_minucias/' + arquivo
   minucias = open(caminho_arquivo, "r")
   linhas = []
@@ -24,4 +25,4 @@ def leArquivosMinucias(arquivo):
   tipo = linhas[3].split("   ")
   tipo.pop(0)
 
-  return (valores_x, valores_y, angulo, tipo)
+  return (valores_x, valores_y, angulo)
