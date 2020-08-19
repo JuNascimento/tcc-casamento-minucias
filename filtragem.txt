@@ -1,0 +1,78 @@
+# #  A partir do momento que eu tenho a matriz acumuladora A montada
+# e com os valores somados, vou suavizá-la com utilizando filtragem espacial
+
+# # Filtragem espacial é muito utilizado para lidar com o realce da imagem
+# # Um filtro passa-baixa rejeita altas frequencias, resultando na suavizacao da imagem
+# # Podemos obter filtros de suavizacao utilizando filtros espaciais
+
+# filtragem de media
+filtragem_media_movel = cv2.blur(A, (3, 3))
+# print("Tamanho da matriz com filtragem média móvel -->", filtragem_media_movel.shape)
+# print("\nTotal listona -->", filtragem_media_movel)
+total_filtragem_media_diferentes_zero = list(zip(filtragem_media_movel.nonzero(
+)[0], filtragem_media_movel.nonzero()[1], filtragem_media_movel.nonzero()[2]))
+print(
+    "\nTotal de minúcias encontradas com média móvel diferentes de zero -->",
+    len(total_filtragem_media_diferentes_zero))
+# print("\nTotal listona -->", total_filtragem_media_diferentes_zero)
+
+maiorMedia = 0
+for item in total_filtragem_media_diferentes_zero:
+  # print("media item", item, "valor", filtragem_media_movel[item[0]][item[1]][item[2]])
+  if filtragem_media_movel[item[0]][item[1]][item[2]] > maiorMedia:
+    maiorMedia = filtragem_media_movel[item[0]][item[1]][item[2]]
+print("Maior valor -->", maiorMedia)
+
+# filtragem gaussiana
+# filtragem_gaussiana = cv2.GaussianBlur(A,(3,3),0)
+# print("Tamanho da matriz com filtragem gaussiana -->", filtragem_gaussiana.shape)
+
+# total_filtragem_gaussiana = np.where(A != 0)
+# lista_filtragem_gaussiana = list(zip(total_filtragem_gaussiana[0], total_filtragem_gaussiana[1]))
+# print("\nTotal de minúcias encontradas -->", len(lista_filtragem_gaussiana))
+
+print("\n--------------------------\n")
+
+
+filtragem_gaussiana = ndimage.filters.gaussian_filter(A, sigma=(3, 3, 3))
+# print("Tamanho da matriz com filtragem gaussiana -->", filtragem_gaussiana.shape)
+total_filtragem_gaussiana_diferentes_zero = list(zip(filtragem_gaussiana.nonzero(
+)[0], filtragem_gaussiana.nonzero()[1], filtragem_gaussiana.nonzero()[2]))
+print("\nTotal de minúcias encontradas com filtragem gaussiana -->",
+  len(total_filtragem_gaussiana_diferentes_zero))
+# print("\nTotal listona -->", total_filtragem_gaussiana_diferentes_zero)
+
+maiorGaussiana = 0
+for item in total_filtragem_gaussiana_diferentes_zero:
+  # print("media item", item, "valor", filtragem_media_movel[item[0]][item[1]][item[2]])
+  if filtragem_gaussiana[item[0]][item[1]][item[2]] > maiorGaussiana:
+    maiorGaussiana = filtragem_gaussiana[item[0]][item[1]][item[2]]
+print("Maior valor -->", maiorGaussiana)
+print("\n--------------------------\n")
+
+# totalblur = np.where(blur1 != 0)
+# totallistonablur = list(zip(totalblur[0], totalblur[1]))
+# print(len(totallistonablur))
+
+# # totalblur = np.where(A != 0)
+# # totallistonablur = list(zip(blur_gaussiana[0], blur_gaussiana[1]))
+# # print(len(totallistonablur))
+
+# # filtragem mediana
+# # blur_mediana = cv2.medianBlur(A,5)
+# # print("aaaa", blur_mediana)
+# # print("aaaa", blur_mediana.shape)
+
+# # plt.subplot(221),plt.imshow(img1),plt.title('Original')
+# # plt.xticks([]), plt.yticks([])
+# # plt.subplot(111),plt.imshow(blur1),plt.title('Suavizada')
+# # plt.xticks([]), plt.yticks([])
+
+# # plt.subplot(222),plt.imshow(img2),plt.title('Original')
+# # plt.xticks([]), plt.yticks([])
+# # plt.subplot(224),plt.imshow(blur2),plt.title('Suavizada')
+# # plt.xticks([]), plt.yticks([])
+# # plt.show()
+# # for item in A:
+# #     print("item", item[0])
+# #     print("-------")

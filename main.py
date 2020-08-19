@@ -1,4 +1,5 @@
 import sys
+import pprint as pp
 import numpy as np
 
 from descobreDadosImagens import descobreDadosImagens
@@ -9,6 +10,7 @@ from descobreMediaMinucias import descobreMediaMinucias
 from reposicionaMatriz import reposicionaMatriz
 from montaMatrizAcumuladora import montaMatrizAcumuladora
 from transladaMatrizes import transladaMatrizes
+from pareiaPontos import pareiaPontos
 
 np.set_printoptions(
   threshold=sys.maxsize,
@@ -66,6 +68,7 @@ print("\n--------------------------\n")
   reposicionaMatriz(valores_x_referencia,
     valores_x_comparacao, media_minucias_x_referencia, media_minucias_x_comparacao
 )
+
 (matriz_reposicionada_y_referencia, matriz_reposicionada_y_comparacao) = \
   reposicionaMatriz(valores_y_referencia,
     valores_y_comparacao, media_minucias_y_referencia, media_minucias_y_comparacao
@@ -87,3 +90,11 @@ index_maior_valor_A = montaMatrizAcumuladora(limites, matriz_reposicionada_x_ref
 (quantidade_pontos_referencia, quantidade_pontos_comparacao,
   referencia_linha, comparacao_linha) = \
     transladaMatrizes(dados_minucias, index_maior_valor_A, limites)
+
+distancia = {
+  "x_y": 30,
+  "rotacao": 20
+}
+
+pareiaPontos(quantidade_pontos_referencia, quantidade_pontos_comparacao,
+  referencia_linha, comparacao_linha, distancia)

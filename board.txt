@@ -1,0 +1,32 @@
+-------------------------------- BOARD --------------------------------
+
+-------------------------------- TO DO
+- alinhamento
+  -- pegar o ponto medio na hora que for dividir em intervalos a matriz.
+
+- descritor (todo)
+  -- olhar descritores de minucias
+
+- score (similaridade) como vou calcular (todo)
+  -- score = numero minucias casadas / menor numero de minucias entre as duas (menor numero de minucias entre as duas imagens)
+
+- rever issues no gitlab
+
+- sistema web e terminal
+  -- 1 imagem rodando para todas
+
+-------------------------------- DOING
+- paring (paring) (doing)
+    -- distancia euclidiana
+    -- onde vou aplicar a diferenca das rotacoes. ja tenho a distancia entre x e y
+      primeiro preciso pegar a nova direcao, considerando a rotacao theta --> rotacao original + theta
+
+-------------------------------- DONE
+
+
+
+-------------------------------- TODOS's --------------------------------
+
+#TODO pq nao tiramos a media dos angulos ao inves da diferenca?
+  # Pq a rotação não trabalhamos com o plano... Não precisamos dessa informação.
+

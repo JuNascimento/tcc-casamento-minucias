@@ -1,0 +1,65 @@
+bShow = 0
+
+MINU1X = [95;123;126;126;147;151;152;153;157;216;233;233;240;254;258;303;309;317;321;326;331;334;342;188;201;202;261;273;318]
+MINU1Y = [176;158;88;135;101;197;200;77;207;136;133;196;205;184;127;226;69;209;111;109;236;97;134;96;180;215;116;231;149]
+MINU1THETA = [342;342;198;180;18;315;45;45;135;180;124;288;270;304;304;342;124;0;326;146;18;326;342;1;2;2;2;2;3]
+MINU2X = [39;64;66;66;71;86;89;117;118;120;140;146;227;230;236;252;252;268;286;289;302;316;321;329;329;332;338;339;339;356;148;181;197;200;202;255]
+MINU2Y = [236;53;52;204;212;41;165;146;77;122;89;63;117;181;189;109;168;207;229;178;205;122;79;77;86;215;81;89;114;118;186;82;166;201;112;98]
+MINU2THETA = [326;180;342;304;146;0;342;342;198;180;0;45;108;288;288;304;304;304;326;342;342;342;315;342;162;0;342;162;342;0;2;1;2;2;0;2]
+
+n1 = size(MINU1X,1)
+n2 = size(MINU2X,1)
+
+cx1 = mean(MINU1X)
+cy1 = mean(MINU1Y)
+cx2 = mean(MINU2X)
+cy2 = mean(MINU2Y)
+
+X1 = MINU1X * ones(1,n2) - cx1
+X2 = ones(n1,1) * MINU2X' - cx2
+Y1 = MINU1Y * ones(1,n2) - cy1
+Y2 = ones(n1,1) * MINU2Y' - cy2
+THETA1 = MINU1THETA * ones(1,n2)
+THETA2 = ones(n1,1) * MINU2THETA'
+
+min_dx = -600
+max_dx = 600
+step_x = 10
+min_rot = -100
+max_rot = 100
+step_rot = 10
+nx = round((max_dx - min_dx)/step_x + 1)
+ny = nx
+nr = round((max_rot - min_rot)/step_rot + 1)
+A = zeros(ny,nx,nr)
+ROT = NormalizeMinuDir(THETA2-THETA1)
+
+theta = ROT*pi/180;
+DX = X2-X1.*cos(theta)-Y1.*sin(theta);
+DY = Y2+X1.*sin(theta)-Y1.*cos(theta);
+
+index_r = round((ROT-min_rot)/step_rot+1);
+index_x = round((DX-min_dx)/step_x+1);
+index_y = round((DY-min_dx)/step_x+1);
+
+[r,c] = find(index_x>0 & index_x<=nx & index_y>0 & index_y<=ny & abs(ROT)<max_rot);
+
+for i = 1:length(r)
+    idx_x = index_x(r(i),c(i));
+    idx_y = index_y(r(i),c(i));
+    idx_r = index_r(r(i),c(i));
+    A(idx_y,idx_x,idx_r) = A(idx_y,idx_x,idx_r) + 1;
+end
+
+
+
+function X = NormalizeMinuDir(X)
+% X -> (-180,180]
+%
+% Jianjiang Feng
+% 2007-3
+
+X = mod(X,360);
+idx = find(X>180);
+X(idx) = X(idx)-360;
+end
